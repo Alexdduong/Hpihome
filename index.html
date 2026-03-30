@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HPI Home - Kiến tạo Không gian, Quản trị Hiện thực</title>
+    <style>
+        /* --- CSS (GIAO DIỆN) --- */
+        :root {
+            --primary-color: #333; /* Màu đen tối giản */
+            --accent-color: #c49b63; /* Màu vàng đồng sang trọng */
+            --text-color: #555;
+            --bg-color: #fff;
+            --light-bg: #f9f9f9;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+        }
+
+        /* Nav */
+        nav {
+            background: var(--bg-color);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=80&w=2000') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        #hero h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        #hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: 2px solid white;
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 50px;
+            box-sizing: border-box;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 60px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Services */
+        #services {
+            background-color: var(--light-bg);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .service-item {
+            background: white;
+            padding: 40px;
+            border-radius: 4px;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+
+        .service-item h3 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        /* --- CÔNG CỤ NÂNG CAO 1: BẢNG DỰ TOÁN TỰ ĐỘNG --- */
+        #estimator-section {
+            background-color: white;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        #estimate-result {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: var(--light-bg);
+            border-left: 4px solid var(--accent-color);
+            display: none; /* Ẩn ban đầu */
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: rgba(255,255,255,0.7);
+            padding: 50px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 20px; }
+            .nav-links { display: none; } /* Đơn giản hóa trên mobile */
+            #hero h1 { font-size: 32px; }
+            section { padding: 50px 20px; }
+            #estimator-section { padding: 30px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">HPI HOME</a>
+        <ul class="nav-links">
+            <li><a href="#hero">Trang chủ</a></li>
+            <li><a href="#about">Giới thiệu</a></li>
+            <li><a href="#services">Dịch vụ</a></li>
+            <li><a href="#estimate">Dự toán</a></li>
+        </ul>
+    </nav>
+
+    <section id="hero">
+        <h1>HPI HOME</h1>
+        <p>Kiến tạo Không gian, Quản trị Hiện thực.</p>
+        <a href="#estimate" class="btn">Nhận Dự toán Ngay</a>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">Về HPI Home</h2>
+        <p style="max-width: 800px; margin: 0 auto; text-align: center; font-size: 1.1rem;">
+            Chúng tôi không chỉ vẽ nên những bản thiết kế đẹp mắt. HPI Home hiểu rằng một công trình thành công đòi hỏi sự kết hợp giữa thẩm mỹ kiến trúc và khả năng quản lý dự án chặt chẽ. Chúng tôi đồng hành cùng bạn từ phác thảo ý tưởng đến việc kiểm soát chi phí thi công tối ưu nhất, đảm bảo tính minh bạch tuyệt đối.
+        </p>
+    </section>
+
+    <section id="services">
+        <div class="service-item">
+            <h3>Thiết kế Kiến trúc</h3>
+            <p>Tối ưu hóa công năng và mang đậm dấu ấn cá nhân. Bản vẽ 3D trực quan, bản vẽ kỹ thuật chi tiết.</p>
+        </div>
+        <div class="service-item">
+            <h3>Lập Dự toán</h3>
+            <p>Bóc tách khối lượng vật tư chính xác từ phần móng đến hoàn thiện. Cam kết không phát sinh chi phí ẩn.</p>
+        </div>
+        <div class="service-item">
+            <h3>Quản lý Thi công</h3>
+            <p>Giám sát chặt chẽ tiến độ và chất lượng. Điều phối các giai đoạn của nhà thầu phụ đúng tiêu chuẩn.</p>
+        </div>
+    </section>
+
+    <section id="estimate">
+        <h2 class="section-title">Dự toán Chi phí Tạm tính</h2>
+        
+        <div id="estimator-section">
+            <p style="text-align: center; margin-bottom: 30px; color: #777;">Điền thông tin để nhận bảng báo giá sơ bộ dựa trên diện tích xây dựng.</p>
+            
+            <div class="form-group">
+                <label for="area">Diện tích xây dựng tạm tính (m²):</label>
+                <input type="number" id="area" placeholder="Ví dụ: 100" required>
+            </div>
+
+            <div class="form-group">
+                <label for="type">Loại công trình:</label>
+                <select id="type">
+                    <option value="luxury">Nhà phố / Biệt thự (Cao cấp)</option>
+                    <option value="standard">Nhà phố / Căn hộ (Tiêu chuẩn)</option>
+                    <option value="basic">Nhà phố / Căn hộ (Phổ thông)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="service">Mức độ hoàn thiện nội thất:</label>
+                <select id="service">
+                    <option value="full">Chìa khóa trao tay (Full Nội thất)</option>
+                    <option value="construct">Thi công phần thô + Hoàn thiện cơ bản</option>
+                    <option value="design">Chỉ thiết kế & Lập dự toán chi tiết</option>
+                </select>
+            </div>
+
+            <button onclick="calculateEstimate()" style="width: 100%; padding: 15px; background-color: var(--primary-color); color: white; border: none; border-radius: 4px; text-transform: uppercase; font-weight: bold; cursor: pointer;">Tính toán chi phí</button>
+
+            <div id="estimate-result">
+                <h4>Kết quả Dự toán Tạm tính:</h4>
+                <p id="total-price" style="font-size: 24px; font-weight: bold; color: var(--accent-color);"></p>
+                <p id="cost-detail" style="font-size: 0.9rem; color: #666;"></p>
+                <p style="font-style: italic; font-size: 0.8rem; margin-top: 15px;">* Lưu ý: Đây là bảng giá tạm tính dựa trên mét vuông. Bảng dự toán chi tiết sẽ được HPI Home bóc tách cụ thể sau khi có bản vẽ thiết kế chính thức.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 HPI Home - All rights reserved.</p>
+        <p>Hotline: 090x.xxx.xxx | Email: contact@hpihome.architect</p>
+    </section>
+
+    <script>
+        // --- Công cụ 1: Logic tính toán dự toán ---
+        function calculateEstimate() {
+            const area = document.getElementById('area').value;
+            const type = document.getElementById('type').value;
+            const service = document.getElementById('service').value;
+            const resultDiv = document.getElementById('estimate-result');
+            const totalPriceP = document.getElementById('total-price');
+            const costDetailP = document.getElementById('cost-detail');
+
+            if (area <= 0 || area === "") {
+                alert("Vui lòng nhập diện tích xây dựng hợp lệ.");
+                return;
+            }
+
+            // --- KIẾN TRÚC SƯ: ĐIỀU CHỈNH ĐƠN GIÁ TẠI ĐÂY (trên mỗi m2) ---
+            let unitCost = 0; // Đơn giá thi công thô + hoàn thiện
+            let interiorCost = 0; // Đơn giá nội thất tăng thêm
+
+            // 1. Dựa trên loại công trình
+            if (type === 'luxury') {
+                unitCost = 7000000; // 7tr/m2
+                interiorCost = 3500000; // 3.5tr/m2
+            } else if (type === 'standard') {
+                unitCost = 5500000; // 5.5tr/m2
+                interiorCost = 2500000; // 2.5tr/m2
+            } else if (type === 'basic') {
+                unitCost = 4500000; // 4.5tr/m2
+                interiorCost = 1500000; // 1.5tr/m2
+            }
+
+            // 2. Dựa trên mức độ hoàn thiện
+            let totalUnitCost = unitCost;
+            let description = "";
+
+            if (service === 'full') {
+                totalUnitCost = unitCost + interiorCost;
+                description = "Chìa khóa trao tay, bao gồm thi công thô, hoàn thiện cơ bản và gói nội thất đầy đủ.";
+            } else if (service === 'construct') {
+                totalUnitCost = unitCost;
+                description = "Bao gồm thi công phần thô và hoàn thiện cơ bản (gạch, sơn, thiết bị vệ sinh cơ bản...). Chưa bao gồm nội thất rời.";
+            } else if (service === 'design') {
+                // Đơn giá thiết kế (ví dụ 150k-300k/m2)
+                totalUnitCost = type === 'luxury' ? 250000 : 180000; 
+                description = "Chỉ bao gồm hồ sơ thiết kế kiến trúc, 3D nội thất và bảng dự toán bóc tách khối lượng chi tiết.";
+            }
+
+            const totalPrice = area * totalUnitCost;
+            
+            // Định dạng tiền tệ VNĐ
+            const formattedPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalPrice);
+            const formattedUnitCost = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalUnitCost);
+
+            totalPriceP.innerHTML = formattedPrice;
+            costDetailP.innerHTML = `Đơn giá trung bình tạm tính: <strong>${formattedUnitCost}/m²</strong>.<br>${description}`;
+            resultDiv.style.display = 'block';
+
+            // Tự động cuộn xuống kết quả
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+
+    </body>
+</html>
